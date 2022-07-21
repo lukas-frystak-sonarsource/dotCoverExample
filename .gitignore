@@ -352,3 +352,4 @@ MigrationBackup/
 # Tool help files
 .sonarqube
 dotCover.Output*
+TestResults
