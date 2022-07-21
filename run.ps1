@@ -8,8 +8,10 @@ $version = "1.0.0"
 
 $coverageReportDirectory = ".\TestResults"
 $coverageReportPath = "$coverageReportDirectory\dotCover.Output.html"
-# The unit test results are store in each test project: *Tests\TestResults\*.trx
+# The unit test results are stored in each test project: *Tests\TestResults\*.trx
 $testReportPath = ".\**\*.trx"
+
+# =====================================================================================================================================
 
 # Firstly, clean existing test results if any exist. We need to do this as 
 # the *.trx report files are not overriden with subsequent test runs.
@@ -22,7 +24,7 @@ if (Test-Path $coverageReportDirectory) {
 # Clear unit test execution results from the respective test projects
 $testResultsDirectories = Get-ChildItem -Path .\**\*Tests\TestResults -Directory
 if ($null -ne $testResultsDirectories) {
-    Write-Host "Removing test result directories..."
+    Write-Host "Removing test results directories..."
     $testResultsDirectories.FullName | Remove-Item -Recurse -Force
 }
 
