@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using MathLibrary;
 
-namespace CalculatorTests
+namespace MathLibraryTests
 {
-    public class Tests
+    public class CalculatorTests
     {
         [SetUp]
         public void Setup()
