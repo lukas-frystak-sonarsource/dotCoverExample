@@ -8,7 +8,7 @@ namespace MathLibrary
 
         public DataProcessor()
         {
-
+            // There's nothing here
         }
 
         public string Instance
