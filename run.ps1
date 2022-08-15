@@ -11,6 +11,8 @@ $coverageReportPath = "$coverageReportDirectory\dotCover.Output.html"
 # The unit test results are stored in each test project: *Tests\TestResults\*.trx
 $testReportPath = ".\**\*.trx"
 
+$branchName = git rev-parse --abbrev-ref HEAD
+
 # =====================================================================================================================================
 
 # Firstly, clean existing test results if any exist. We need to do this as 
@@ -35,7 +37,8 @@ dotnet sonarscanner begin `
     /d:sonar.host.url=$sonarQubeUrl /d:sonar.login=$sonarQubeToken `
     /d:sonar.cs.dotcover.reportsPaths=$coverageReportPath `
     /d:sonar.cs.vstest.reportsPaths=$testReportPath `
-    /d:sonar.verbose=false
+    /d:sonar.verbose=false `
+    /d:sonar.branch.name=$branchName
 
 # Build the solution.
 dotnet build $solution --configuration Release
