@@ -2,8 +2,8 @@
 $sonarQubeUrl = $env:SONARQUBE_URL
 $sonarQubeToken = $env:SONARQUBE_TOKEN
 $solution = ".\src\main.sln"
-$projectKey = "example:dotCover"
-$projectName = "Example: dotCover .NET Coverage"
+$projectKey = "lukas-frystak-sonarsource_dotCoverExample_AYXeU10iRWnsrqWqXvlh"
+$projectName = "dotCoverExample"
 $version = "1.0.0"
 
 $coverageReportDirectory = ".\TestResults"
@@ -38,7 +38,10 @@ dotnet sonarscanner begin `
     /d:sonar.cs.dotcover.reportsPaths=$coverageReportPath `
     /d:sonar.cs.vstest.reportsPaths=$testReportPath `
     /d:sonar.verbose=false `
-    /d:sonar.branch.name=$branchName
+    #/d:sonar.branch.name=1$branchName
+    #/d:sonar.pullrequest.branch=test/coverage `
+    #/d:sonar.pullrequest.base=main `
+    #/d:sonar.pullrequest.key=1
 
 # Build the solution.
 dotnet build $solution --configuration Release
