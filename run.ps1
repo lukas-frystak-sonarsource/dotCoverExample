@@ -2,14 +2,16 @@
 $sonarQubeUrl = $env:SONARQUBE_URL
 $sonarQubeToken = $env:SONARQUBE_TOKEN
 $solution = ".\src\main.sln"
-$projectKey = "example:dotCover"
-$projectName = "Example: dotCover .NET Coverage"
+$projectKey = "lukas-frystak-sonarsource_dotCoverExample_AYXeU10iRWnsrqWqXvlh"
+$projectName = "dotCoverExample"
 $version = "1.0.0"
 
 $coverageReportDirectory = ".\TestResults"
 $coverageReportPath = "$coverageReportDirectory\dotCover.Output.html"
 # The unit test results are stored in each test project: *Tests\TestResults\*.trx
 $testReportPath = ".\**\*.trx"
+
+$branchName = git rev-parse --abbrev-ref HEAD
 
 # =====================================================================================================================================
 
@@ -35,7 +37,11 @@ dotnet sonarscanner begin `
     /d:sonar.host.url=$sonarQubeUrl /d:sonar.login=$sonarQubeToken `
     /d:sonar.cs.dotcover.reportsPaths=$coverageReportPath `
     /d:sonar.cs.vstest.reportsPaths=$testReportPath `
-    /d:sonar.verbose=false
+    /d:sonar.verbose=false `
+    #/d:sonar.branch.name=1$branchName
+    #/d:sonar.pullrequest.branch=test/coverage `
+    #/d:sonar.pullrequest.base=main `
+    #/d:sonar.pullrequest.key=1
 
 # Build the solution.
 dotnet build $solution --configuration Release
